@@ -13,7 +13,6 @@ node basenode {
 
 node ringnode inherits basenode {
 #    include no-apache2
-    include syslog_ng::client
     include nodesonlycron
     include etcfiles_ring
     file { "/etc/puppet/puppet.conf":
@@ -65,7 +64,6 @@ node 'master01.infra' inherits basenode {
 #   IPv6 prefix: 2001:888:2001::/48
 node 'container01.infra' inherits infranode {
     include containercronjobs
-    include syslog_ng::client
     include kvm
     include backup::client
     
@@ -119,7 +117,6 @@ node 'container01.infra' inherits infranode {
 #   IPv6 prefix: 2001:1AF8:4013::/48
 node 'container02.infra' inherits infranode {
     include containercronjobs
-    include syslog_ng::client
     include kvm
     include backup::client
 
@@ -172,7 +169,6 @@ node 'container02.infra' inherits infranode {
 #   IPv6 prefix: 2a02:d28:666:0:0:0:0:0/48
 node 'container03.infra' inherits infranode {
     include containercronjobs
-    include syslog_ng::client
     include kvm
     include backup::client
 
@@ -230,7 +226,6 @@ node 'container03.infra' inherits infranode {
 #   IPv6 prefix: 2a00:0f10:0122::/48
 node 'container06.infra' inherits infranode {
     include containercronjobs
-    include syslog_ng::client
     include kvm
     
     kvm::virtual_machine { 'backup':
@@ -255,7 +250,6 @@ node dbslaves inherits infranode {
 
 node 'dbmaster.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
 #    class { "mysql::server": 
 #        config_hash => {
@@ -271,7 +265,6 @@ node 'dbmaster.infra' inherits infranode {
 # website, dns, mailing-list etc
 node 'public01.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include apache2
     include powerdns
@@ -290,7 +283,6 @@ node 'public01.infra' inherits infranode {
 
 node 'public02.infra' inherits inframailnode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include apache2
     include powerdns
@@ -299,7 +291,6 @@ node 'public02.infra' inherits inframailnode {
 
 node 'public03.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include apache2
     include powerdns
@@ -310,7 +301,6 @@ node 'public03.infra' inherits infranode {
 
 node 'backup.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include backup::server
 }
@@ -318,7 +308,6 @@ node 'backup.infra' inherits infranode {
 # looking glass 1
 node 'lg01.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include backup::client
     include bird
@@ -338,7 +327,6 @@ node 'lg01.infra' inherits infranode {
 # machine to manage auth material for ring users
 node 'auth.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include nodesonlycron
     include backup::client
     include ring_auth::landing
@@ -347,13 +335,11 @@ node 'auth.infra' inherits infranode {
 node 'compute01.infra' inherits infranode {
     $owner = "job"
     include backup::client
-    include syslog_ng::client
 }
 
 node 'compute02.infra' inherits infranode {
     $owner = "job"
     include backup::client
-    include syslog_ng::client
     include apache2
     $graphite_servername = 'graphite02.infra.ring.nlnog.net'
     include graphite
@@ -361,7 +347,6 @@ node 'compute02.infra' inherits infranode {
 
 node 'storage01.infra' inherits infranode {
     $owner = "job"
-    include syslog_ng::client
     include backup::server
 }
 
@@ -985,7 +970,6 @@ node 'occaid01' {
     include puppetbinaries
 
     include no-apache2
-    include syslog_ng::client
     include nodesonlycron
 
     $owner = "occaid"
@@ -2573,7 +2557,6 @@ node 'anuragbhatia01' {
     include puppetbinaries
 
     include no-apache2
-    include syslog_ng::client
     include nodesonlycron
 
     $owner = "anuragbhatia"

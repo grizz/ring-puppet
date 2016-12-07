@@ -1,5 +1,4 @@
 # site.pp
-$logServerList = ['master01.infra.ring.nlnog.net']
 
 import "modules.pp"
 import "nodes"
